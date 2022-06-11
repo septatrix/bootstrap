@@ -222,41 +222,41 @@ Validation styles are available for the following form controls and components:
 <form class="was-validated">
   <div class="mb-3">
     <label for="validationTextarea" class="form-label">Textarea</label>
-    <textarea class="form-control" id="validationTextarea" placeholder="Required example textarea" required></textarea>
-    <div class="invalid-feedback">
+    <textarea class="form-control" id="validationTextarea" placeholder="Required example textarea" aria-describedby="validationSupportedElementsTextArea" required></textarea>
+    <div id="validationSupportedElementsTextArea" class="invalid-feedback">
       Please enter a message in the textarea.
     </div>
   </div>
 
   <div class="form-check mb-3">
-    <input type="checkbox" class="form-check-input" id="validationFormCheck1" required>
+    <input type="checkbox" class="form-check-input" id="validationFormCheck1" aria-describedby="validationSupportedElementsCheckBox" required>
     <label class="form-check-label" for="validationFormCheck1">Check this checkbox</label>
-    <div class="invalid-feedback">Example invalid feedback text</div>
+    <div id="validationSupportedElementsCheckBox" class="invalid-feedback">Example invalid feedback text</div>
   </div>
 
   <div class="form-check">
-    <input type="radio" class="form-check-input" id="validationFormCheck2" name="radio-stacked" required>
+    <input type="radio" class="form-check-input" id="validationFormCheck2" name="radio-stacked" aria-describedby="validationSupportedElementsRadio" required>
     <label class="form-check-label" for="validationFormCheck2">Toggle this radio</label>
   </div>
   <div class="form-check mb-3">
-    <input type="radio" class="form-check-input" id="validationFormCheck3" name="radio-stacked" required>
+    <input type="radio" class="form-check-input" id="validationFormCheck3" name="radio-stacked" aria-describedby="validationSupportedElementsRadio" required>
     <label class="form-check-label" for="validationFormCheck3">Or toggle this other radio</label>
-    <div class="invalid-feedback">More example invalid feedback text</div>
+    <div id="validationSupportedElementsRadio" class="invalid-feedback">More example invalid feedback text</div>
   </div>
 
   <div class="mb-3">
-    <select class="form-select" required aria-label="select example">
+    <select class="form-select" required aria-label="select example" aria-describedby="validationSupportedElementsSelect">
       <option value="">Open this select menu</option>
       <option value="1">One</option>
       <option value="2">Two</option>
       <option value="3">Three</option>
     </select>
-    <div class="invalid-feedback">Example invalid select feedback</div>
+    <div id="validationSupportedElementsSelect" class="invalid-feedback">Example invalid select feedback</div>
   </div>
 
   <div class="mb-3">
-    <input type="file" class="form-control" aria-label="file example" required>
-    <div class="invalid-feedback">Example invalid form file feedback</div>
+    <input type="file" class="form-control" aria-label="file example" required aria-describedby="validationSupportedElementsFile">
+    <div id="validationSupportedElementsFile" class="invalid-feedback">Example invalid form file feedback</div>
   </div>
 
   <div class="mb-3">
