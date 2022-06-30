@@ -8,6 +8,7 @@
 import * as Popper from '@popperjs/core'
 import {
   defineJQueryPlugin,
+  execute,
   getElement,
   getNextActiveElement,
   isDisabled,
@@ -316,7 +317,7 @@ class Dropdown extends BaseComponent {
 
     return {
       ...defaultBsPopperConfig,
-      ...(typeof this._config.popperConfig === 'function' ? this._config.popperConfig(defaultBsPopperConfig) : this._config.popperConfig)
+      ...execute(this._config.popperConfig, [defaultBsPopperConfig])
     }
   }
 
