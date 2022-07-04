@@ -15,6 +15,9 @@
   --#{$prefix}tooltip-arrow-height: #{$tooltip-arrow-height};
   // scss-docs-end tooltip-css-vars
 
+  position: absolute;
+  top: 0;
+  left: 0;
   z-index: var(--#{$prefix}tooltip-zindex);
   display: block;
   padding: var(--#{$prefix}tooltip-arrow-height);
