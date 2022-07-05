@@ -12,8 +12,7 @@ import Manipulator from './dom/manipulator'
 import BaseComponent from './base-component'
 import TemplateFactory from './util/template-factory'
 import FloatingUi from './util/floating-ui'
-import { arrow, autoUpdate, flip, hide, offset, shift } from '@floating-ui/dom'
-import SelectorEngine from './dom/selector-engine'
+import { flip, hide, offset, shift } from '@floating-ui/dom'
 
 /**
  * Constants
@@ -71,7 +70,6 @@ const Default = {
   sanitizeFn: null,
   selector: false,
   template: '<div class="tooltip" role="tooltip">' +
-    '<div class="tooltip-arrow"></div>' +
     '<div class="tooltip-inner"></div>' +
     '</div>',
   title: '',
@@ -269,7 +267,7 @@ class Tooltip extends BaseComponent {
       }
 
       if (!this._isHovered) {
-        this.cleanup()
+        // this.cleanup()
         tip.remove()
       }
 
@@ -372,24 +370,20 @@ class Tooltip extends BaseComponent {
   }
 
   update() {
-    this.cleanup = autoUpdate(this._element, this._getTipElement(), () => {
-      this._positionHelper.calculate(this._element, this._getTipElement(), this._getFloatingUiConfig(), { position: 'fixed' })
-    })
+    // this.cleanup = autoUpdate(this._element, this._getTipElement(), () => {
+    this._positionHelper.calculate(this._element, this._getTipElement(), this._getFloatingUiConfig())
+    // })
   }
 
   _getFloatingUiConfig() {
-    console.log(SelectorEngine.findOne(`.${this.constructor.NAME}-arrow`, this._getTipElement())) // eslint-disable-line no-console
     const defaultBsConfig = {
-      strategy: 'fixed',
+      // strategy: 'fixed',
       placement: this._getPlacement(),
       middleware: [
         offset(this._positionHelper.getOffset(this._config.offset)),
         shift(),
-        flip(), //  fallbackPlacements: this._config.fallbackPlacements
-        hide(),
-        arrow({
-          element: SelectorEngine.findOne(`.${this.constructor.NAME}-arrow`, this._getTipElement())
-        })
+        flip({ fallbackPlacements: this._config.fallbackPlacements }),
+        hide()
       ]
     }
 
@@ -409,31 +403,6 @@ class Tooltip extends BaseComponent {
   _resolvePossibleFunction(arg) {
     return typeof arg === 'function' ? arg.call(this._element) : arg
   }
-
-  // _getPopperConfig() {
-  //   const defaultBsPopperConfig = {
-  //     modifiers: [
-  //       {
-  //         name: 'preventOverflow',
-  //         options: {
-  //           boundary: this._config.boundary
-  //         }
-  //       },
-  //       {
-  //         name: 'preSetPlacement',
-  //         enabled: true,
-  //         phase: 'beforeMain',
-  //         fn: data => {
-  //           // Pre-set Popper's placement attribute in order to read the arrow sizes properly.
-  //           // Otherwise, Popper mixes up the width and height dimensions since the initial arrow style is for top placement
-  //           this._getTipElement().setAttribute('data-popper-placement', data.state.placement)
-  //         }
-  //       }
-  //     ]
-  //   }
-  //
-  //   return defaultBsPopperConfig
-  // }
 
   _setListeners() {
     const triggers = this._config.trigger.split(' ')
