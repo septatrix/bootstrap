@@ -308,8 +308,6 @@ class Tooltip extends BaseComponent {
     }
 
     tip.classList.remove(CLASS_NAME_FADE, CLASS_NAME_SHOW)
-    // todo: on v6 the following can be achieved with CSS only
-    tip.classList.add(`bs-${this.constructor.NAME}-auto`)
 
     const tipId = getUID(this.constructor.NAME).toString()
 

@@ -63,8 +63,8 @@ class FloatingUi {
 
     if (Array.isArray(value)) {
       return {
-        mainAxis: Number.parseInt(value.split(',')[0], 10),
-        alignmentAxis: Number.parseInt(value.split(',')[1] || 0, 10)
+        mainAxis: value[0],
+        alignmentAxis: value[1]
       }
     }
 
