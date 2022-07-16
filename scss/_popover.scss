@@ -74,6 +74,25 @@
   }
 }
 
+.popover[data-bs-placement="bottom"] {
+  &::before,
+  &::after {
+    left: 50%;
+    border-width: 0 calc(var(--#{$prefix}popover-arrow-width) * .5) var(--#{$prefix}popover-arrow-height); // stylelint-disable-line function-disallowed-list
+  }
+
+  &::before {
+    top: 0;
+    border-bottom-color: var(--#{$prefix}popover-arrow-border);
+  }
+
+  &::after {
+    top: var(--#{$prefix}popover-border-width);
+    border-bottom-color: var(--#{$prefix}popover-bg);
+  }
+}
+
+
 /* rtl:begin:ignore */
 
 .popover[data-bs-placement="right"] {
@@ -96,38 +115,6 @@
 }
 
 
-/* rtl:end:ignore */
-.popover[data-bs-placement="bottom"] {
-  &::before,
-  &::after {
-    left: 50%;
-    border-width: 0 calc(var(--#{$prefix}popover-arrow-width) * .5) var(--#{$prefix}popover-arrow-height); // stylelint-disable-line function-disallowed-list
-  }
-
-  &::before {
-    top: 0;
-    border-bottom-color: var(--#{$prefix}popover-arrow-border);
-  }
-
-  &::after {
-    top: var(--#{$prefix}popover-border-width);
-    border-bottom-color: var(--#{$prefix}popover-bg);
-  }
-}
-
-// This will remove the popover-header's border just below the arrow
-.popover-header::before {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  display: block;
-  width: var(--#{$prefix}popover-arrow-width);
-  margin-left: calc(var(--#{$prefix}popover-arrow-width) * -.5); // stylelint-disable-line function-disallowed-list
-  content: "";
-  border-bottom: var(--#{$prefix}popover-border-width) solid var(--#{$prefix}popover-header-bg);
-}
-
-
 .popover[data-bs-placement="left"] {
   &::before,
   &::after {
@@ -145,6 +132,21 @@
     right: var(--#{$prefix}popover-border-width);
     border-left-color: var(--#{$prefix}popover-bg);
   }
+}
+
+
+/* rtl:end:ignore */
+
+// This will remove the popover-header's border just below the arrow
+.popover-header::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: block;
+  width: var(--#{$prefix}popover-arrow-width);
+  margin-left: calc(var(--#{$prefix}popover-arrow-width) * -.5); // stylelint-disable-line function-disallowed-list
+  content: "";
+  border-bottom: var(--#{$prefix}popover-border-width) solid var(--#{$prefix}popover-header-bg);
 }
 
 

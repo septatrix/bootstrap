@@ -267,7 +267,7 @@ class Tooltip extends BaseComponent {
       }
 
       if (!this._isHovered) {
-        // this.cleanup()
+        this._positionHelper.stop()
         tip.remove()
       }
 
@@ -368,19 +368,17 @@ class Tooltip extends BaseComponent {
   }
 
   update() {
-    // this.cleanup = autoUpdate(this._element, this._getTipElement(), () => {
-    this._positionHelper.calculate(this._element, this._getTipElement(), this._getFloatingUiConfig())
-    // })
+    this._positionHelper.calculate(this._element, this._getTipElement(), this._getFloatingUiConfig(), { position: 'fixed' })
   }
 
   _getFloatingUiConfig() {
     const defaultBsConfig = {
-      // strategy: 'fixed',
+      strategy: 'fixed',
       placement: this._getPlacement(),
       middleware: [
-        offset(this._positionHelper.getOffset(this._config.offset)),
-        shift(),
+        offset(this._positionHelper.parseOffset(this._config.offset)),
         flip({ fallbackPlacements: this._config.fallbackPlacements }),
+        shift(),
         hide()
       ]
     }

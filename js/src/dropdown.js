@@ -55,11 +55,11 @@ const SELECTOR_NAVBAR_NAV = '.navbar-nav'
 const SELECTOR_VISIBLE_ITEMS = '.dropdown-menu .dropdown-item:not(.disabled):not(:disabled)'
 
 const PLACEMENT_TOPCENTER = 'top'
-const PLACEMENT_TOPEND = 'top-start'
-const PLACEMENT_TOP = 'top-end'
+const PLACEMENT_TOPEND = 'top-end'
+const PLACEMENT_TOP = 'top-start'
 const PLACEMENT_BOTTOMCENTER = 'bottom'
-const PLACEMENT_BOTTOMEND = 'bottom-start'
-const PLACEMENT_BOTTOM = 'bottom-end'
+const PLACEMENT_BOTTOMEND = 'bottom-end'
+const PLACEMENT_BOTTOM = 'bottom-start'
 const PLACEMENT_RIGHT = 'right-start'
 const PLACEMENT_LEFT = 'left-start'
 
@@ -180,13 +180,14 @@ class Dropdown extends BaseComponent {
     this._menu.classList.remove(CLASS_NAME_SHOW)
     this._element.classList.remove(CLASS_NAME_SHOW)
     this._element.setAttribute('aria-expanded', 'false')
+    this._positionHelper.stop()
     EventHandler.trigger(this._element, EVENT_HIDDEN, relatedTarget)
   }
 
   _getFloatingUiConfig() {
     const defaultBsConfig = {
       placement: this._getPlacement(),
-      middleware: [offset(this._positionHelper.getOffset(this._config.offset)), shift()]
+      middleware: [offset(this._positionHelper.parseOffset(this._config.offset)), shift()]
     }
 
     // Disable Popper if we have a static display or Dropdown is in Navbar

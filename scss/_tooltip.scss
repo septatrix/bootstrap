@@ -5,7 +5,6 @@
   --#{$prefix}tooltip-max-width: #{$tooltip-max-width};
   --#{$prefix}tooltip-padding-x: #{$tooltip-padding-x};
   --#{$prefix}tooltip-padding-y: #{$tooltip-padding-y};
-  --#{$prefix}tooltip-margin: #{$tooltip-margin};
   @include rfs($tooltip-font-size, --#{$prefix}tooltip-font-size);
   --#{$prefix}tooltip-color: #{$tooltip-color};
   --#{$prefix}tooltip-bg: #{$tooltip-bg};
@@ -20,9 +19,7 @@
   left: 0;
   z-index: var(--#{$prefix}tooltip-zindex);
   display: block;
-  padding: var(--#{$prefix}tooltip-arrow-height) var(--#{$prefix}tooltip-arrow-width);
-  margin: var(--#{$prefix}tooltip-margin);
-  @include deprecate("`$tooltip-margin`", "v5", "v5.x", true);
+  padding: var(--#{$prefix}tooltip-arrow-height);
   // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
   // So reset our font and text properties to avoid inheriting weird values.
   @include reset-text();
@@ -50,19 +47,19 @@
   border-top-color: var(--#{$prefix}tooltip-bg);
 }
 
+.tooltip[data-bs-placement="bottom"]::before {
+  top: 0;
+  left: 50%;
+  border-width: 0 calc(var(--#{$prefix}tooltip-arrow-width) * .5) var(--#{$prefix}tooltip-arrow-height); // stylelint-disable-line function-disallowed-list
+  border-bottom-color: var(--#{$prefix}tooltip-bg);
+}
+
 .tooltip[data-bs-placement="right"]::before {
   top: 50%;
   left: 0;
   border-width: calc(var(--#{$prefix}tooltip-arrow-width) * .5) var(--#{$prefix}tooltip-arrow-height) calc(var(--#{$prefix}tooltip-arrow-width) * .5) 0; // stylelint-disable-line function-disallowed-list
   border-right-color: var(--#{$prefix}tooltip-bg);
   transform: translateY(-50%);
-}
-
-.tooltip[data-bs-placement="bottom"]::before {
-  top: 0;
-  left: 50%;
-  border-width: 0 calc(var(--#{$prefix}tooltip-arrow-width) * .5) var(--#{$prefix}tooltip-arrow-height); // stylelint-disable-line function-disallowed-list
-  border-bottom-color: var(--#{$prefix}tooltip-bg);
 }
 
 .tooltip[data-bs-placement="left"]::before {

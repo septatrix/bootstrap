@@ -1,7 +1,7 @@
 // import {computePosition, flip, shift} from '@floating-ui/dom'
 //
 //
-import { computePosition } from '@floating-ui/dom'
+import { autoUpdate, computePosition } from '@floating-ui/dom'
 import { getElement, isElement } from './index'
 import Manipulator from '../dom/manipulator'
 
@@ -12,19 +12,36 @@ class FloatingUi {
     }
 
     this._element = element
+    this._cleanup = null
   }
 
-  calculate(reference, tooltip, config) {
-    computePosition(reference, tooltip, config)
-      // eslint-disable-next-line no-unused-vars
-      .then(({ x, y, placement, middlewareData }) => {
-        const positionCss = {
-          left: `${x}px`,
-          top: `${y}px`
-        }
-        Object.assign(tooltip.style, positionCss)
-        Manipulator.setDataAttribute(tooltip, 'placement', placement)
-      })
+  calculate(reference, floatingEl, config, extraCss = {}) {
+    this._cleanup = autoUpdate(reference, floatingEl, () => {
+      computePosition(reference, floatingEl, config)
+        .then(({ x, y, placement, middlewareData }) => {
+          const positionCss = {
+            left: `${x}px`,
+            top: `${y}px`
+          }
+          console.log(middlewareData) // eslint-disable-line no-console
+          if (middlewareData.hide) {
+            const { referenceHidden } = middlewareData.hide
+
+            Object.assign(floatingEl.style, {
+              visibility: referenceHidden ? 'hidden' : 'visible'
+            })
+          }
+
+          Object.assign(floatingEl.style, { ...positionCss, ...extraCss })
+          Manipulator.setDataAttribute(floatingEl, 'placement', placement)
+        })
+    })
+  }
+
+  stop() {
+    if (this._cleanup) {
+      this._cleanup()
+    }
   }
 
   getReferenceElement(reference, parent, PluginName) {
@@ -47,7 +64,7 @@ class FloatingUi {
     return this._element
   }
 
-  getOffset(value) {
+  parseOffset(value) {
     console.log(value) // eslint-disable-line no-console
     if (typeof value === 'function') {
       return popperData => value(popperData, this._element)
