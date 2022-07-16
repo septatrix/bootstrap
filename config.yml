@@ -75,15 +75,15 @@ params:
   cdn:
     # See https://www.srihash.org for info on how to generate the hashes
     css:              "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-    css_hash:         "sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+    css_hash:         "sha384-Ja1sshfueVDt+aayjCJOC/u8vWU4JRelns37RFtNK/gHzDlQyMMoyz7VJkRM1ZbC"
     css_rtl:          "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.rtl.min.css"
-    css_rtl_hash:     "sha384-dc2NSrAXbAkjrdm9IYrX10fQq9SDG6Vjz7nQVKdKcJl3pC+k37e7qJR5MVSCS+wR"
+    css_rtl_hash:     "sha384-acp0CGcq56gpkYfXbBZuhrMEq6vQCN6iAQFYOQkM3BNACcibUWVAgCo667iXMEbe"
     js:               "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
-    js_hash:          "sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+    js_hash:          "sha384-unWk7XgV2QDt/w7bvOt+3msH/CN4M0bdg4dmejsmPpId+upDbj6w/b4PEqyZUFFu"
     js_bundle:        "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-    js_bundle_hash:   "sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-    popper:           "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
-    popper_hash:      "sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+    js_bundle_hash:   "sha384-+zRiGC0NCAYzgJUOEtycKM8pxFbtMQT/T/0wgPUDj3B/MNoRni3oj6peeFqNBVpa"
+    floating_ui:      "https://cdn.jsdelivr.net/npm/@floating-ui/dom@0.5.4/dist/floating-ui.dom.umd.min.js"
+    floating_ui_hash: "sha384-Os8n9bzoYJ/ESbGD7cW0VOTLk0hO++SO+Y4swXBE2dHrxiZkjADEr5ZGOcc9CorD"
 
   anchors:
     min: 2
